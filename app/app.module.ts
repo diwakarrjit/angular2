@@ -7,12 +7,13 @@ import { GreeterComponent }  from './greeter/greeter.component';
 import { SalaryCalculatorComponent }  from './salaryCalculator/salaryCalculator.component';
 import { BugTrackerComponent }  from './BugTracker/bugTracker.component';
 import {BugOperations} from './BugTracker/bugOperations.service';
+import {LocalStorage} from './BugTracker/localStorage.service';
 import {TrimTextPipe} from './BugTracker/pipes/trimText.pipe'
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule ],
   declarations: [ AppComponent,GreeterComponent,SalaryCalculatorComponent,BugTrackerComponent,TrimTextPipe ],
   bootstrap:    [ AppComponent ],
-  providers:    [BugOperations]
+  providers:    [BugOperations,LocalStorage]
 })
 export class AppModule { }
