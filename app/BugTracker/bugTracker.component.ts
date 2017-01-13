@@ -18,15 +18,13 @@ import { LocalStorage } from './localStorage.service';
 		<input type="checkbox" name="" id="">
 	</section>
 	<section class="edit">
-		<label for="">New Bug :</label>
-		<input type="text" name="" [(ngModel)]="bugTracker.bug.Title" id="">
-		<input type="button" (click)="addBug()" value="Save">
+    <bug-edit (onBugAdd)="OnNewBugAddEvent($event)"></bug-edit>
 	</section>
 	<section class="list">
 		<ol>
 			<li *ngFor="let bug of localStorage.getAllBugs()">
             	<span (click)="toggleBug(bug)" class="bugname" [ngClass]="{closed:bug.isClosed}" >{{bug.Id}}. {{bug.Title | trimText:40}}</span>
-				<div class="datetime">[Created At]</div>
+				<div class="datetime">{{bug.timeStamp | elapsedTime}}</div>
 			</li>
 		</ol>
 		<input type="button" (click)="removeBugs()" value="Remove Closed">
@@ -43,10 +41,17 @@ constructor(private bugTracker:BugOperations, private localStorage:LocalStorage)
 this.bugTracker.bugs=this.localStorage.getAllBugs();
 }
 
-addBug(){
-this.bugTracker.AddBug();
+OnNewBugAddEvent(bugname:string)
+{
+    //this.bugTracker.bug.Title=bugname;
+    this.bugTracker.AddBug(bugname);
 this.localStorage.syncBugs(this.bugTracker.bugs);
 }
+
+// addBug(){
+// this.bugTracker.AddBug();
+// this.localStorage.syncBugs(this.bugTracker.bugs);
+// }
 
 removeBugs(){
     this.bugTracker.removeBugs();

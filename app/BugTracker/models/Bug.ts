@@ -2,5 +2,6 @@
 export class Bug{
 Id:number;
 Title:string;
-isClosed: boolean
+isClosed: boolean;
+timeStamp: Date;
 }

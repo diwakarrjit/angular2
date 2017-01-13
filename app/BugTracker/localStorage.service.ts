@@ -8,7 +8,8 @@ localStorage:any= window.localStorage;
 getAllBugs(key:string="bugs"):Array<Bug>
 {
 let bugs:Array<Bug>= JSON.parse(this.localStorage.getItem(key));
-
+if(bugs == null)
+bugs=new Array<Bug>();
 return bugs;
 }
 

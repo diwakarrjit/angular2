@@ -10,8 +10,8 @@ export class BugOperations{
  
 
  ///***********Functions */
-AddBug(){
-    let newBug:Bug={Id:this.bugs.length+1,  Title:this.bug.Title,isClosed:false};
+AddBug(bugName:string){
+    let newBug:Bug={Id:this.bugs.length+1,  Title:bugName,isClosed:false, timeStamp:new Date()};
     this.bugs.push(newBug);
     this.bug=new Bug();
     localStorage.setItem("bugs", JSON.stringify(this.bugs));
